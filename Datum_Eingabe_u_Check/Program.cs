@@ -53,7 +53,7 @@ namespace Datum_Eingabe_u_Check
 
 							Console.WriteLine("Bitte den Tag eingeben:");
 							tag = Convert.ToInt32(Console.ReadLine());
-							if (((tag >= 1) && (tag <= 31)) == true)
+							if ((tag >= 1) && (tag <= 31))
 							{
 								// ?
 								validD = true;
@@ -66,7 +66,7 @@ namespace Datum_Eingabe_u_Check
 
 							Console.WriteLine("Bitte den Monat eingeben:");
 							monat = Convert.ToInt32(Console.ReadLine());
-							if (((monat >= 1) && (monat <= 12)) == true)
+							if ((monat >= 1) && (monat <= 12))
 							{
 								// ?
 								validM = true;
@@ -77,9 +77,9 @@ namespace Datum_Eingabe_u_Check
 						case ConsoleKey.J:
 							//Jahr Überprüfung
 
-							Console.WriteLine("Bitte den Jahr eingeben:");
+							Console.WriteLine("Bitte das Jahr eingeben:");
 							jahr = Convert.ToInt32(Console.ReadLine());
-							if (((jahr >= 1) && (jahr <= 9999)) == true)
+							if ((jahr >= 1) && (jahr <= 9999))
 							{
 								// ?
 								validJ = true;
@@ -97,11 +97,7 @@ namespace Datum_Eingabe_u_Check
 						}
 
 					}
-					if (!schalti && (tag > 28))
-					{
-						Console.WriteLine("Der von ihnen eingegebene Tag ist nicht " +
-						"vorhanden! (es ist kein Schaltjahr.))");
-					}
+					
 					if (schalti)
 					{
 
@@ -115,16 +111,31 @@ namespace Datum_Eingabe_u_Check
 						Console.WriteLine("Das Datum {0}.{1}.{2} ist gültig und es ist" +
 						" kein Schaltjahr!", tag, monat, jahr);
 					}
-					else
-					Console.WriteLine("Da stimmt etwas nicht bitte eingabe überprüfen!");
+					else if (!validD || !validM || !validJ)
+					{
+						Console.WriteLine("Es fehlen noch gültige Eingaben bitte überprüfen!");
+						Console.WriteLine("Der Tag lautet: {0} und {1}, der Monat lautet:" +
+						"{2} und ist {3}, das Jahr lautet {4} und ist {5}", tag, validD, monat, validM, jahr, validJ);
+						loopBreak = false;
+					}
+					else if (!schalti && (tag > 28))
+					{
+						Console.WriteLine("Der von ihnen eingegebene Tag ist nicht " +
+						"vorhanden! (es ist kein Schaltjahr.))");
+						loopBreak =true; 
+					}
+					//else
+					//{
+					//	Console.WriteLine("Möchten sie ein weiteres Datum überprüfen? \n " +
+					//	" Bitte 'j' drücken!");
+					//	nochmal = Convert.ToChar(Console.Read());
+					//	if (nochmal == 'j')
+					//	{
+					//		loopBreak = false;
+					//	}
+					//}
 				}
-				Console.WriteLine("Möchten sie ein weiteres Datum überprüfen? \n " +
-				" Bitte 'j' drücken!");
-				nochmal = Convert.ToChar(Console.Read());
-				if (nochmal == 'j')
-				{ 
-				loopBreak = false;
-				}
+				
 		
 			}
 			Console.Read();
