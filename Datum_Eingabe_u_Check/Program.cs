@@ -30,91 +30,101 @@ namespace Datum_Eingabe_u_Check
 			bool validD = false;
 			bool validM = false;
 			bool validJ = false;
+			char nochmal;
 			
 
 			while (loopBreak == false)
-
 			{
-				//E
-				Console.WriteLine("Für die Eingabe des Tages bitte 'T' drücken: ");
-				Console.WriteLine("Für die Eingabe des Monats bitte 'M' drücken: ");
-				Console.WriteLine("Für die Eingabe des Jahres bitte 'J' drücken: ");
-				ConsoleKeyInfo caseInput = Console.ReadKey(true);
-				StringBuilder output = new StringBuilder(
-				String.Format("Sie haben '{0}' gedrückt", caseInput.KeyChar));
-				Console.WriteLine(output.ToString());
-
-				switch (caseInput.Key)
+				while ((validD && validM && validJ) != true)
 				{
-					case ConsoleKey.T:
-						//Tag Überprüfung
-						
-						Console.WriteLine("Bitte den Tag eingeben:");
-						tag = Convert.ToInt32(Console.ReadLine());
-						if (((tag >= 1) || (tag <= 31)) == true)
-						{
-							// ?
-						validD = true;
-						loopBreak = true;
-						}
-						break;
+					//E
+					Console.WriteLine("Für die Eingabe des Tages bitte 'T' drücken: ");
+					Console.WriteLine("Für die Eingabe des Monats bitte 'M' drücken: ");
+					Console.WriteLine("Für die Eingabe des Jahres bitte 'J' drücken: ");
+					ConsoleKeyInfo caseInput = Console.ReadKey(true);
+					StringBuilder output = new StringBuilder(
+					String.Format("Sie haben '{0}' gedrückt", caseInput.KeyChar));
+					Console.WriteLine(output.ToString());
 
-					case ConsoleKey.M:
-						//Monat Überprüfung
-						
-						Console.WriteLine("Bitte den Monat eingeben:");
-						monat = Convert.ToInt32(Console.ReadLine());
-						if (((monat >= 1) || (monat <= 12)) == true)
-						{
-							// ?
-						validM = true;
-						loopBreak = true;
-						}
-						break;
-
-					case ConsoleKey.J:
-						//Jahr Überprüfung
-						
-						Console.WriteLine("Bitte den Jahr eingeben:");
-						jahr = Convert.ToInt32(Console.ReadLine());
-						if (((jahr >= 1) || (jahr <= 9999)) == true)
-						{
-							// ?
-						validJ = true;
-						loopBreak = true;
-						}
-						break;
-				}
-				if (validD && validM && validJ)
-				{
-					//V
-					if (jahr % 400 == 0 || !(jahr % 100 == 0) || jahr % 4 == 0 )
+					switch (caseInput.Key)
 					{
-					schalti = true;
+						case ConsoleKey.T:
+							//Tag Überprüfung
+
+							Console.WriteLine("Bitte den Tag eingeben:");
+							tag = Convert.ToInt32(Console.ReadLine());
+							if (((tag >= 1) && (tag <= 31)) == true)
+							{
+								// ?
+								validD = true;
+								loopBreak = true;
+							}
+							break;
+
+						case ConsoleKey.M:
+							//Monat Überprüfung
+
+							Console.WriteLine("Bitte den Monat eingeben:");
+							monat = Convert.ToInt32(Console.ReadLine());
+							if (((monat >= 1) && (monat <= 12)) == true)
+							{
+								// ?
+								validM = true;
+								loopBreak = true;
+							}
+							break;
+
+						case ConsoleKey.J:
+							//Jahr Überprüfung
+
+							Console.WriteLine("Bitte den Jahr eingeben:");
+							jahr = Convert.ToInt32(Console.ReadLine());
+							if (((jahr >= 1) && (jahr <= 9999)) == true)
+							{
+								// ?
+								validJ = true;
+								loopBreak = true;
+							}
+							break;
 					}
 
-				}
-				if ( !schalti && ( tag > 28))
+					if (validD && validM && validJ)
 					{
-					Console.WriteLine("Der von ihnen eingegebene Tag ist nicht " +
-					"vorhanden! (es ist kein Schaltjahr.))");
+						//V
+						if (jahr % 400 == 0 || !(jahr % 100 == 0) || jahr % 4 == 0)
+						{
+							schalti = true;
+						}
+
 					}
-				if (schalti)
-				{
-					
-					// Korrektes Datum und Schaltjahr!
-					Console.WriteLine("Das Datum {0}.{1}.{2} ist gültig und es ist" +
-					" ein Schaltjahr!", tag, monat, jahr);
+					if (!schalti && (tag > 28))
+					{
+						Console.WriteLine("Der von ihnen eingegebene Tag ist nicht " +
+						"vorhanden! (es ist kein Schaltjahr.))");
+					}
+					if (schalti)
+					{
+
+						// Korrektes Datum und Schaltjahr!
+						Console.WriteLine("Das Datum {0}.{1}.{2} ist gültig und es ist" +
+						" ein Schaltjahr!", tag, monat, jahr);
+					}
+					else if (validD && validM && validJ)
+					{
+						// Korrektes Datum (Kein Schaltjahr)!
+						Console.WriteLine("Das Datum {0}.{1}.{2} ist gültig und es ist" +
+						" kein Schaltjahr!", tag, monat, jahr);
+					}
+					else
+					Console.WriteLine("Da stimmt etwas nicht bitte eingabe überprüfen!");
 				}
-				else
+				Console.WriteLine("Möchten sie ein weiteres Datum überprüfen? \n " +
+				" Bitte 'j' drücken!");
+				nochmal = Convert.ToChar(Console.Read());
+				if (nochmal == 'j')
 				{ 
-					// Korrektes Datum (Kein Schaltjahr)!
-					Console.WriteLine("Das Datum {0}.{1}.{2} ist gültig und es ist" +
-					" kein Schaltjahr!", tag, monat, jahr);
+				loopBreak = false;
 				}
-				
-
-				//A
 		
 			}
 			Console.Read();
