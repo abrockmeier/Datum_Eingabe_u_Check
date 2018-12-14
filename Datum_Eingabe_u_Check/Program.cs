@@ -97,7 +97,7 @@ namespace Datum_Eingabe_u_Check
 						}
 
 					}
-					
+					 // Verschachtelung prüfen und ggf. ändern!
 					if (schalti)
 					{
 
@@ -124,16 +124,16 @@ namespace Datum_Eingabe_u_Check
 						"vorhanden! (es ist kein Schaltjahr.))");
 						loopBreak =true; 
 					}
-					//else
-					//{
-					//	Console.WriteLine("Möchten sie ein weiteres Datum überprüfen? \n " +
-					//	" Bitte 'j' drücken!");
-					//	nochmal = Convert.ToChar(Console.Read());
-					//	if (nochmal == 'j')
-					//	{
-					//		loopBreak = false;
-					//	}
-					//}
+					else 
+					{
+						Console.WriteLine("Möchten sie ein weiteres Datum überprüfen? \n " +
+						" Bitte 'j' drücken!");
+						nochmal = Convert.ToChar(Console.Read());
+						if (nochmal == 'j')
+						{
+							loopBreak = false;
+						}
+					}
 				}
 				
 		
