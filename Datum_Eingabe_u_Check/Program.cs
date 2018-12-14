@@ -88,30 +88,9 @@ namespace Datum_Eingabe_u_Check
 							break;
 					}
 
-					if (validD && validM && validJ)
-					{
-						//V
-						if (jahr % 400 == 0 || !(jahr % 100 == 0) || jahr % 4 == 0)
-						{
-							schalti = true;
-						}
+					 // Verschachtelung prüfen und ggf. ändern! (Abfragebed. Schalti checken)
 
-					}
-					 // Verschachtelung prüfen und ggf. ändern!
-					if (schalti)
-					{
-
-						// Korrektes Datum und Schaltjahr!
-						Console.WriteLine("Das Datum {0}.{1}.{2} ist gültig und es ist" +
-						" ein Schaltjahr!", tag, monat, jahr);
-					}
-					else if (validD && validM && validJ)
-					{
-						// Korrektes Datum (Kein Schaltjahr)!
-						Console.WriteLine("Das Datum {0}.{1}.{2} ist gültig und es ist" +
-						" kein Schaltjahr!", tag, monat, jahr);
-					}
-					else if (!validD || !validM || !validJ)
+					if (!validD || !validM || !validJ)
 					{
 						Console.WriteLine("Es fehlen noch gültige Eingaben bitte überprüfen!");
 						Console.WriteLine("Der Tag lautet: {0} und {1}, der Monat lautet:" +
@@ -124,6 +103,30 @@ namespace Datum_Eingabe_u_Check
 						"vorhanden! (es ist kein Schaltjahr.))");
 						loopBreak =true; 
 					}
+					if (validD && validM && validJ)
+					{
+						//V
+						if (jahr % 400 == 0 || !(jahr % 100 == 0) || jahr % 4 == 0)
+						{
+							schalti = true;
+						}
+
+					}
+					
+					if ((validD && validM && validJ)&&(schalti))
+					{
+
+						// Korrektes Datum und Schaltjahr!
+						Console.WriteLine("Das Datum {0}.{1}.{2} ist gültig und es ist" +
+						" ein Schaltjahr!", tag, monat, jahr);
+					}
+					else if (validD && validM && validJ)
+					{
+						// Korrektes Datum (Kein Schaltjahr)!
+						Console.WriteLine("Das Datum {0}.{1}.{2} ist gültig und es ist" +
+						" kein Schaltjahr!", tag, monat, jahr);
+					}
+					
 					else 
 					{
 						Console.WriteLine("Möchten sie ein weiteres Datum überprüfen? \n " +
